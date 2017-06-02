@@ -1,9 +1,0 @@
-# -*- coding: utf-8 -*-
-# -*- coding: utf-8 -*-
-db = DAL('mysql://root:mysql2016@localhost/elude')
-db.define_table('puntos',Field('usuario'),Field('puntaje','integer'), migrate=True)
-db.define_table('usuario',Field('identificacion','integer'),Field('nombreUsuario'),Field('clave','integer'), primarykey=['identificacion'], migrate=True)
-db.define_table('game',Field('idgame','integer'),Field('nombreGame'),Field('categoria'), primarykey=['idgame'], migrate=True)
-db.define_table('usuario_has_game',Field('usuario_identificacion',db.usuario),Field('game_idgame',db.game),Field('puntos','integer'), primarykey=['usuario_identificacion','game_idgame'], migrate=True)
-
-purchased = (db.usuario.identificacion == db.usuario_has_game.usuario_identificacion)&(db.game.idgame == db.usuario_has_game.game_idgame)
